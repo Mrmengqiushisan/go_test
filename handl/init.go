@@ -1,5 +1,0 @@
-package handl
-
-func Init() {
-
-}
