@@ -1,0 +1,5 @@
+package handl
+
+func Init() {
+
+}
