@@ -3,6 +3,7 @@ package repository
 import (
 	"bufio"
 	"encoding/json"
+	"fmt"
 	"os"
 )
 
@@ -20,10 +21,16 @@ func InitTopicIndexMap(filepath string) error {
 	topicTmpMap := make(map[int64]*Topic)
 	for scanner.Scan() {
 		text := scanner.Text()
+		fmt.Println(text)
 		var topic Topic
 		if err := json.Unmarshal([]byte(text), &topic); err != nil {
 			return err
 		}
+		buf, err := json.MarshalIndent(topic, "", "\t")
+		if err != nil {
+			return err
+		}
+		fmt.Println(string(buf))
 		topicTmpMap[topic.Id] = &topic
 	}
 	topicIndexMap = topicTmpMap
